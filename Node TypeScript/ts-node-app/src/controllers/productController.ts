@@ -61,8 +61,22 @@ export const getProductById = async (req: Request, res: Response) => {
     });
   }
 };
+
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
+    const id = Number(req.params.id);
+    const productDelete = await prisma.product.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    if (productDelete) {
+      res.status(200).json({
+        success: true,
+        message: "Product deleted successfully.",
+      });
+    }
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -70,6 +84,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
     });
   }
 };
+
 export const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
