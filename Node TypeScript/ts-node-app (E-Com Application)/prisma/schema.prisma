@@ -21,3 +21,14 @@ model Product {
   isDeleted Boolean @default(false)
   createdAt DateTime @default(now())
 }
+
+model User {
+  id
+  name
+  role
+  email
+  phoneNo
+  password
+  isDeleted
+  createdAt
+}
